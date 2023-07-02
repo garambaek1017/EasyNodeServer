@@ -17,5 +17,7 @@ console.log("현재 실행한 퍼알의 패스 : %s",__dirname);
 var Person = {name:"아이즈원", member:"12"};
 console.dir(Person);
 
+// 2023/07/02 p.63까지 공부 
+
 
 
