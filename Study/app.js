@@ -5,8 +5,6 @@ var userRedis = require('./Redis/userRedis');
 var matchingRedis = require('./Redis/matchingRedis');
 
 
-
-
 // Express 기본 모듈 불러오기
 var express = require('express')
   , http = require('http')
@@ -63,28 +61,5 @@ http.createServer(app).listen(app.get('port'), function(){
 
 userRedis = new userRedis();
 userRedis.Display();
-
 userRedis.SetData();
-
-// matchingRedis = new matchingRedis();
-// matchingRedis.Display();
-
-
-// async.waterfall([
-// 	function(callback)
-// 	{
-// 		myredis.redisSet();
-// 		console.log("redisSet!!")
-// 		return callback(null);
-// 	},
-// 	function(callback)
-// 	{
-// 		myredis.redisShow();
-// 		console.log("redis show!!")
-// 		return callback(null);
-
-// 	}], function(err,result){
-// 		console.log("waterfall is success");
-
-// });
 
