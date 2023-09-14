@@ -17,7 +17,6 @@ class userRedis extends baseRedis {
             host: "127.0.0.1",
             port: "6379",
             db: 1,     
-            
         };
 
         this.redisClient = redis.createClient({

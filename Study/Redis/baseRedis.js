@@ -22,9 +22,6 @@ class baseRedis {
     {
         console.log("host:"+ this.host +" port:" + this.port +" name:" + this.name);
     }
-
-    
 }
-
 
 module.exports =  baseRedis
