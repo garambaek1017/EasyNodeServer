@@ -11,7 +11,9 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/app.js"
+            "program": "${workspaceFolder}/app.js",
+            "console": "integratedTerminal", // integratedTerminal로 설정
+            "outputCapture": "std" // 표준 출력
         }
     ]
 }

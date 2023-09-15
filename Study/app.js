@@ -51,8 +51,9 @@ app.use(function (req, res, next) {
 // Express 서버 시작
 http.createServer(app).listen(app.get('port'), function () {
 
-	logHelper.write('Express server listening on port ' + app.get('port'));
-	//console.log('Express server listening on port ' + app.get('port'));
+	logHelper.debug('Express server listening on port ' + app.get('port'));
+	logHelper.info('Express server listening on port ' + app.get('port'));
+	logHelper.error('Express server listening on port ' + app.get('port'));
 });
 
 
