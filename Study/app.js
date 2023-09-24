@@ -1,24 +1,23 @@
 
+// 내부 
 const myredis = require('./redis');
-const async = require('async');
-let userRedis = require('./Redis/userRedis');
-let matchingRedis = require('./Redis/matchingRedis');
+const userRedis = require('./Redis/userRedis');
+const matchingRedis = require('./Redis/matchingRedis');
 const logHelper = require('./Util/logHelper').getInstance();
+const testModules = require('./Util/testModules');
 
-
-// Express 기본 모듈 불러오기
-var express = require('express')
-	, http = require('http')
-	, path = require('path');
+// 외부 
+const async = require('async');
+// 외부 - Express 기본 모듈 불러오기
+const express = require('express'), http = require('http'), path = require('path');
 
 // Express의 미들웨어 불러오기
-var bodyParser = require('body-parser')
-	, static = require('serve-static');
+const bodyParser = require('body-parser'), static = require('serve-static');
 
 // loghelper 초기화 
 logHelper.init("myTestServer", path.join(path.dirname(__dirname), '/log/'), 'dev');
 
-// 익스프레스 객체 생성
+// // 익스프레스 객체 생성
 var app = express();
 
 // 기본 속성 설정
@@ -50,13 +49,18 @@ app.use(function (req, res, next) {
 
 // Express 서버 시작
 http.createServer(app).listen(app.get('port'), function () {
-
 	logHelper.debug('Express server listening on port ' + app.get('port'));
-	logHelper.info('Express server listening on port ' + app.get('port'));
-	logHelper.error('Express server listening on port ' + app.get('port'));
+	console.log('Express server listening on port ' + app.get('port'));
 });
 
 
+
+testModules.MotherC();
+
+/*
 userRedis = new userRedis();
-userRedis.Display();
+serRedis.Display();
 userRedis.SetData();
+*/
+
+

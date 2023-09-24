@@ -1,19 +1,24 @@
+// 외부 
 const winston = require('winston');
 const dailyRotateFile = require('winston-daily-rotate-file');
 const fs = require('fs');
+
+// 내뷰 
 const serverTimeHelper = require('./serverTimeHelper.js');
 
 // 로그 처리 클래스 
 const logHelper = class {
+
     constructor() {
-        
     }
 
     // 싱글턴으로 사용
     static getInstance() {
+        
         if (!this.instance) {
             this.instance = new logHelper();
         }
+
         return this.instance;
     }
 

@@ -1,43 +1,36 @@
-'use strict';
+"use strict";
 
-var redis = require('redis');
+var redis = require("redis");
 
-var baseRedis = require('./baseRedis');
+class userRedis {
+  constructor(_host, _port, _db, _name) {
+    this.host = _host;
+    this.port = _port;
+    this.db = _db;
+    this.name = _name;
 
-class userRedis extends baseRedis {
+    this.redisClient = redis.createClient({
+      config_redis,
+    });
 
-    constructor() {
-        
-        super();
+    this.redisClient.on("connect", () => {
+      console.info("user Redis connected!");
+    });
 
-        super.Init("127.0.0.1","6379","userRedis","1");
+    this.redisClient.on("error", (err) => {
+      console.error("user Redis client error", err);
+    });
 
+    this.redisClient.connect();
+  }
 
-        var config_redis = {
-            host: "127.0.0.1",
-            port: "6379",
-            db: 1,     
-        };
+  SetData() {
+    this.redisClient.set("foo", "bar");
+  }
 
-        this.redisClient = redis.createClient({
-            config_redis
-        });
-
-        this.redisClient.on('connect', ()=> {
-            console.info('user Redis connected!');
-        });
-    
-        this.redisClient.on('error', (err) => {
-            console.error('user Redis client error', err);
-        });
-    
-        this.redisClient.connect();
-    }
-
-    SetData()
-    {
-        this.redisClient.set('foo','bar');
-    }
+  getData(key) {
+    return this.redisClient.get(key);
+  }
 }
 
-module.exports =  userRedis
+module.exports = userRedis;

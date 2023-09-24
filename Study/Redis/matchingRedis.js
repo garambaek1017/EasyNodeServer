@@ -1,14 +1,30 @@
-'use strict';
+"use strict";
 
-var baseRedis = require('./baseRedis');
+var redis = require("redis");
 
-class matchingRedis extends baseRedis {
+class matchingRedis {
+    
+  constructor(_host, _port, _db, _name) {
 
-    constructor() {
-        super();
-        super.Init("127.0.0.1", "6379", "matchRedis", "0");
-    }
+    this.host = _host;
+    this.port = _port;
+    this.db = _db;
+    this.name = _name;
+
+    this.redisClient = redis.createClient({
+      config_redis,
+    });
+
+    this.redisClient.on("connect", () => {
+      console.info("matching Redis connected!");
+    });
+
+    this.redisClient.on("error", (err) => {
+      console.error("matching Redis client error", err);
+    });
+
+    this.redisClient.connect();
+  }
 }
 
-
-module.exports = matchingRedis
+module.exports = matchingRedis;
