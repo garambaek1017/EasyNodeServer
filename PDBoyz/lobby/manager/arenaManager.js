@@ -1,7 +1,6 @@
-const serverTimeHelper = require('../util/serverTimeHelper');
+const serverTimeHelper = require('./util/serverTimeHelper');
 const gamedb = require('../common/mysqlgame');
 const dataModel = require('../common/data_models');
-
 const config = require('./config.json');
 
 

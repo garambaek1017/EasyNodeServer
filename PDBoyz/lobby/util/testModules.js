@@ -1,5 +1,5 @@
 const { child } = require("winston");
-const logHelper = require("./logHelper").getInstance();
+const logHelper = require("../logHelper").getInstance();
 
 function MotherA() {
 
