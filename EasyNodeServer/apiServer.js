@@ -17,6 +17,7 @@ const apiServer = class {
 
     constructor() {
 
+        // app 설정
         this.webApp = new express();
 
         this.webApp.use(bodyParser.json());
