@@ -12,6 +12,8 @@ const g = require('./common/global');
 
 let router = g.express.Router();
 
+const gameDB = require('./db/gameDBConnector');
+
 const apiServer = class {
 
     constructor() {
@@ -36,6 +38,8 @@ const apiServer = class {
         this.webAppServer = http.createServer(this.webApp);
 
         this.port = 3000;
+
+        this.gameDBConnetor = gameDB();
     }
 
     static getInstance() {
@@ -59,6 +63,8 @@ const apiServer = class {
             g.logHelper.info('Easy server listening on port ' + this.webApp.get('port'));
         });
     }
+
+
 
 }
 

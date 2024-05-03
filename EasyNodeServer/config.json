@@ -1,0 +1,9 @@
+{
+  "gamedb_host": "localhost",
+  "gamedb_port": 3306,
+  "gamedb_user": "admin",
+  "gamedb_password": "admin12345!",
+  "gamedb_database": "game_db",
+  "gamedb_dateStrings": "date",
+  "gamedb_maxconn": 5
+}

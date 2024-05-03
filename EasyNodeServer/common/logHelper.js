@@ -8,11 +8,16 @@ const {combine, timestamp, printf} = winston.format;
 const logDir = `${process.cwd()}/logs`;
 
 
-//* log 출력 포맷 정의 함수
-const logFormat = printf(({ level, message, timestamp }) => {
+/*
+ log 출력 포맷 정의 함수
+ */
+const logFormat = printf(({level, message, timestamp}) => {
     return `[${timestamp}]|${level}| ${message}`; // 날짜 [시스템이름] 로그레벨 메세지
 });
 
+/*
+ * 서버 로그
+ */
 const logHelper = class {
     constructor() {
         this.logger = this.getLogger();
@@ -60,7 +65,7 @@ const logHelper = class {
                 new winstonDaily({
                     level: 'error', // error 레벨에선
                     datePattern: 'YYYY-MM-DD',
-                    dirname: logDir+'/error', // /logs/error 하위에 저장
+                    dirname: logDir + '/error', // /logs/error 하위에 저장
                     filename: `error_%DATE%.log`, // 에러 로그는 2020-05-28.error.log 형식으로 저장
                     maxFiles: 30,
                     zippedArchive: true,
