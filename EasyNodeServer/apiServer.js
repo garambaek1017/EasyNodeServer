@@ -38,11 +38,10 @@ const apiServer = class {
         this.webAppServer = http.createServer(this.webApp);
 
         this.port = 3000;
-
-        this.gameDBConnetor = gameDB();
     }
 
     static getInstance() {
+
         if (!this.instance) {
             this.instance = new apiServer();
         }
@@ -56,16 +55,11 @@ const apiServer = class {
         this.webAppServer.listen(this.port, () => {
             g.logHelper.info(`start listen :  ${this.port}`);
         });
-    }
 
-    startOn(){
         this.webAppServer.on('listening', () => {
             g.logHelper.info('Easy server listening on port ' + this.webApp.get('port'));
         });
     }
-
-
-
 }
 
 module.exports = apiServer;

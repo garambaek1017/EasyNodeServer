@@ -6,7 +6,7 @@ const apiServer = require('./apiServer').getInstance();
 g.logHelper.info("** BGR Total Server Start **");
 
 apiServer.startListen();
-apiServer.startOn();
+//apiServer.startOn();
 
 process.title ="BGR EasyNodeServer";
 

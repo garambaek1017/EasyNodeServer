@@ -48,7 +48,7 @@ class gameDBConnector {
 
         if (poolResult) {
             setInterval(() => this.dbMonitor(), 60 * 1000);
-            logHelper.info(' db connect success');
+            logHelper.info(`db connect success ${this.dbConfig}`);
         } else {
             logHelper.info(' db connect fail..');
         }
@@ -60,10 +60,30 @@ class gameDBConnector {
 
         if (this.dbConnPool) {
             setInterval(() => this.dbMonitor(), 60 * 1000);
-            logHelper.info('db connect success');
+            logHelper.info('create pool is success..');
+
+            // test code
+            this.dbConnPool.on('connection', function (connection) {
+                console.log('gameDB connection established(threadid:%d, total:%d, free:%d)', connection.threadId, this.dbConnPool._allConnections.length, this.dbConnPool._freeConnections.length);
+            });
+
+            this.dbConnPool.on('acquire', function (connection) {
+                //console.log('gameDB connection(%d) acquired pool(used:%d, total:%d)', connection.threadId, ( this.dbConnPool._allConnections.length - pool._freeConnections.length),  this.dbConnPool._allConnections.length);
+            });
+
+            this.dbConnPool.on('enqueue', function () {
+                //console.log('gameDB query enqueued:');
+            });
+
+            this.dbConnPool.on('release', function (connection) {
+                //console.log('gameDB connection(%d) release pool(used:%d, total:%d)', connection.threadId, ( this.dbConnPool._allConnections.length -  this.dbConnPool._freeConnections.length),  this.dbConnPool._allConnections.length);
+            });
+
             return true;
         }
-        logHelper.info('db connect fail');
+
+        logHelper.info('create pool is fail..');
+
         return false;
     }
 
